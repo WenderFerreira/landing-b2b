@@ -11,6 +11,7 @@ node_modules
 dist
 dist-ssr
 *.local
+landing-b2b-clean
 
 # Editor directories and files
 .vscode/*
