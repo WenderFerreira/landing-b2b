@@ -57,50 +57,50 @@ type InputFieldProps = React.InputHTMLAttributes<HTMLInputElement> & {
 
 const problems: SectionItem[] = [
   {
-    title: "O Lead Esfria Rápido",
+    title: "Leads esfriam antes do seu time responder",
     description:
-      "Cada minuto sem resposta reduz suas chances de fechamento e entrega o cliente para quem atende primeiro.",
+      "Quando o primeiro contato demora, a oportunidade perde valor e o concorrente entra na frente.",
     icon: Clock3,
   },
   {
-    title: "O Caos no WhatsApp",
+    title: "WhatsApp sem processo vira perda de oportunidade",
     description:
-      "Conversas perdidas, follow-ups esquecidos e times sem padrão tornam seu comercial lento e inconsistente.",
+      "Mensagens dispersas, follow-ups esquecidos e atendimento sem padrao reduzem a conversao do comercial.",
     icon: MessageCircleMore,
   },
   {
-    title: "O Furo no Orçamento",
+    title: "Seu investimento em trafego nao vira venda",
     description:
-      "Você investe em tráfego, mas perde dinheiro quando leads pagos não entram em um fluxo inteligente de vendas.",
+      "Voce paga para gerar demanda, mas perde receita quando os leads nao entram em um fluxo de vendas eficiente.",
     icon: BadgeDollarSign,
   },
 ];
 
 const solutions: SectionItem[] = [
   {
-    title: "Captura Inteligente",
+    title: "Captacao e triagem automaticas",
     description:
-      "Receba e qualifique leads automaticamente a partir de anúncios, formulários e canais de entrada.",
+      "Centralize leads de anuncios, formularios e canais de entrada com qualificacao automatica desde o primeiro contato.",
     icon: Funnel,
   },
   {
-    title: "Resposta Instantânea",
+    title: "Resposta imediata no momento certo",
     description:
-      "Ative respostas em até 5 segundos no WhatsApp com roteamento e contexto para acelerar conversões.",
+      "Dispare respostas em segundos no WhatsApp com contexto e direcionamento para acelerar o avanco da conversa.",
     icon: Zap,
   },
   {
-    title: "Gestão Visual no CRM",
+    title: "Pipeline claro para acompanhar e fechar",
     description:
-      "Organize etapas, status e próximos passos em pipelines claros para não perder nenhuma oportunidade.",
+      "Organize etapas, responsaveis e proximos passos em um CRM visual para nao deixar nenhuma oportunidade escapar.",
     icon: LayoutDashboard,
   },
 ];
 
 const highlights = [
-  "Fluxos desenhados para o seu processo comercial",
-  "WhatsApp integrado com resposta e qualificação automática",
-  "Pipeline organizado para acompanhamento e fechamento",
+  "Processo comercial desenhado para vender com previsibilidade",
+  "WhatsApp com atendimento rapido, padrao e rastreavel",
+  "CRM visual para acompanhar, cobrar e fechar com clareza",
 ];
 
 const fadeUp = {
@@ -125,22 +125,22 @@ function GlowBackground() {
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden">
       <motion.div
-        className="absolute left-1/2 top-[-120px] h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-violet-600/18 blur-3xl"
-        animate={{ scale: [1, 1.08, 1], opacity: [0.55, 0.75, 0.55] }}
+        className="absolute left-1/2 top-[-120px] h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-white/8 blur-3xl"
+        animate={{ scale: [1, 1.08, 1], opacity: [0.32, 0.5, 0.32] }}
         transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
-        className="absolute right-[-60px] top-40 h-[340px] w-[340px] rounded-full bg-fuchsia-500/10 blur-3xl"
+        className="absolute right-[-60px] top-40 h-[340px] w-[340px] rounded-full bg-white/5 blur-3xl"
         animate={{ x: [0, -16, 0], y: [0, 12, 0] }}
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
-        className="absolute left-[-50px] bottom-20 h-[280px] w-[280px] rounded-full bg-violet-700/12 blur-3xl"
+        className="absolute left-[-50px] bottom-20 h-[280px] w-[280px] rounded-full bg-white/4 blur-3xl"
         animate={{ x: [0, 18, 0], y: [0, -14, 0] }}
         transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
       />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(139,92,246,0.08),transparent_30%),linear-gradient(to_bottom,rgba(255,255,255,0.03),transparent_18%),linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:100%_100%,100%_100%,64px_64px,64px_64px] opacity-[0.22]" />
-      <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-violet-500/8 to-transparent" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.08),transparent_30%),linear-gradient(to_bottom,rgba(255,255,255,0.03),transparent_18%),linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:100%_100%,100%_100%,64px_64px,64px_64px] opacity-[0.22]" />
+      <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-white/6 to-transparent" />
     </div>
   );
 }
@@ -165,7 +165,7 @@ function MetricCard({ value, label }: MetricCardProps) {
     <motion.div
       whileHover={{
         boxShadow: "0 18px 40px rgba(0,0,0,0.26), inset 0 1px 0 rgba(255,255,255,0.04)",
-        borderColor: "rgba(139,92,246,0.22)",
+        borderColor: "rgba(255,255,255,0.18)",
       }}
       transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
       className="rounded-2xl border border-white/10 bg-black/20 p-5 shadow-[0_12px_30px_rgba(0,0,0,0.2)]"
@@ -190,13 +190,13 @@ function SectionCard({ icon: Icon, title, description, index }: SectionCardProps
         variants={{
           hover: {
             background:
-              "radial-gradient(circle at 12% 18%, rgba(139,92,246,0.26), transparent 34%), radial-gradient(circle at 88% 82%, rgba(168,85,247,0.16), transparent 30%)",
+              "radial-gradient(circle at 12% 18%, rgba(255,255,255,0.12), transparent 34%), radial-gradient(circle at 88% 82%, rgba(255,255,255,0.08), transparent 30%)",
           },
         }}
         transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
         style={{
           background:
-            "radial-gradient(circle at 12% 18%, rgba(139,92,246,0.14), transparent 30%), radial-gradient(circle at 88% 82%, rgba(168,85,247,0.06), transparent 26%)",
+            "radial-gradient(circle at 12% 18%, rgba(255,255,255,0.08), transparent 30%), radial-gradient(circle at 88% 82%, rgba(255,255,255,0.04), transparent 26%)",
         }}
       />
       <motion.div
@@ -205,11 +205,11 @@ function SectionCard({ icon: Icon, title, description, index }: SectionCardProps
         transition={{ duration: 0.45 }}
         style={{
           boxShadow:
-            "inset 0 1px 0 rgba(255,255,255,0.08), inset 0 0 0 1px rgba(139,92,246,0.22), 0 0 0 1px rgba(139,92,246,0.06)",
+            "inset 0 1px 0 rgba(255,255,255,0.08), inset 0 0 0 1px rgba(255,255,255,0.12), 0 0 0 1px rgba(255,255,255,0.04)",
         }}
       />
       <motion.div
-        className="absolute inset-x-6 top-0 h-px origin-left bg-gradient-to-r from-transparent via-violet-300/50 to-transparent"
+        className="absolute inset-x-6 top-0 h-px origin-left bg-gradient-to-r from-transparent via-white/50 to-transparent"
         variants={{ hover: { scaleX: 1.08, opacity: 1 } }}
         transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
         style={{ scaleX: 0.82, opacity: 0.7 }}
@@ -219,18 +219,18 @@ function SectionCard({ icon: Icon, title, description, index }: SectionCardProps
           variants={{
             hover: {
               boxShadow:
-                "inset 0 1px 0 rgba(255,255,255,0.10), 0 0 0 1px rgba(139,92,246,0.16), 0 10px 30px rgba(139,92,246,0.12)",
-              backgroundColor: "rgba(139,92,246,0.12)",
+                "inset 0 1px 0 rgba(255,255,255,0.10), 0 0 0 1px rgba(255,255,255,0.14), 0 10px 30px rgba(255,255,255,0.06)",
+              backgroundColor: "rgba(255,255,255,0.08)",
             },
           }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl border border-violet-300/15 bg-violet-500/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] ring-1 ring-violet-400/10"
+          className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-white/5 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] ring-1 ring-white/10"
         >
           <motion.div
             variants={{ hover: { rotate: -8, scale: 1.04 } }}
             transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
           >
-            <Icon className="h-6 w-6 text-violet-300" />
+            <Icon className="h-6 w-6 text-white" />
           </motion.div>
         </motion.div>
         <motion.h3
@@ -260,7 +260,7 @@ function InputField({ id, label, className = "", ...props }: InputFieldProps) {
       </label>
       <input
         id={id}
-        className={`w-full rounded-2xl border border-white/10 bg-white/[0.045] px-4 py-3 text-white outline-none placeholder:text-zinc-500 transition duration-200 focus:border-violet-400/40 focus:bg-white/[0.07] focus:shadow-[0_0_0_4px_rgba(139,92,246,0.12)] ${className}`}
+        className={`w-full rounded-2xl border border-white/10 bg-white/[0.045] px-4 py-3 text-white outline-none placeholder:text-zinc-500 transition duration-200 focus:border-white/30 focus:bg-white/[0.07] focus:shadow-[0_0_0_4px_rgba(255,255,255,0.08)] ${className}`}
         {...props}
       />
     </div>
@@ -291,7 +291,7 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
       return;
     }
 
-    console.log("Formulário enviado:", formData);
+    console.log("Formulario enviado:", formData);
   };
 
   const completionHint = useMemo(() => {
@@ -300,7 +300,7 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
   }, [formData]);
 
   return (
-    <div className="min-h-screen overflow-hidden bg-[#0B0B0E] text-white selection:bg-violet-600/30">
+    <div className="min-h-screen overflow-hidden bg-[#050505] text-white selection:bg-white/20">
       <div className="relative">
         <GlowBackground />
 
@@ -312,17 +312,17 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
             className="mx-auto flex max-w-6xl items-center justify-between rounded-full border border-white/10 bg-white/[0.045] px-4 py-3 shadow-[0_12px_30px_rgba(0,0,0,0.25)] backdrop-blur-xl"
           >
             <div className="flex items-center gap-3">
-              <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-violet-300/15 bg-violet-600/15 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] ring-1 ring-violet-400/10">
-                <Sparkles className="h-5 w-5 text-violet-300" />
+              <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/5 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] ring-1 ring-white/10">
+                <Sparkles className="h-5 w-5 text-white" />
               </div>
               <div>
-                <p className="text-sm font-semibold tracking-wide text-white">Automação B2B</p>
-                <p className="text-xs text-zinc-400">Infraestrutura comercial de alta conversão</p>
+                <p className="text-sm font-semibold tracking-[0.22em] text-white">YANG</p>
+                <p className="text-xs text-zinc-400">Automacao comercial para operacoes B2B</p>
               </div>
             </div>
             <a
               href="#formulario"
-              className="hidden rounded-full border border-violet-400/20 bg-violet-600 px-5 py-2.5 text-sm font-semibold text-white shadow-[0_0_30px_rgba(139,92,246,0.25)] transition duration-200 hover:bg-violet-500 md:inline-flex"
+              className="hidden rounded-full border border-white/10 bg-white px-5 py-2.5 text-sm font-semibold text-black shadow-[0_0_30px_rgba(255,255,255,0.08)] transition duration-200 hover:bg-zinc-200 md:inline-flex"
             >
               Falar com Especialista
             </a>
@@ -339,26 +339,26 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
                 <motion.div
                   variants={fadeUp}
                   custom={0.05}
-                  className="mb-6 inline-flex items-center gap-2 rounded-full border border-violet-400/20 bg-white/5 px-4 py-2 text-sm text-zinc-300 backdrop-blur-xl shadow-[0_10px_30px_rgba(0,0,0,0.25)]"
+                  className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-zinc-300 backdrop-blur-xl shadow-[0_10px_30px_rgba(0,0,0,0.25)]"
                 >
-                  <Activity className="h-4 w-4 text-violet-300" />
-                  Atendimento, qualificação e CRM integrados em um único fluxo
+                  <Activity className="h-4 w-4 text-white" />
+                  Atendimento, qualificacao e CRM integrados em um unico fluxo
                 </motion.div>
 
                 <motion.h1
                   variants={fadeUp}
                   custom={0.12}
-                  className="mx-auto max-w-5xl text-5xl font-black leading-[0.92] tracking-tight text-white sm:text-6xl lg:text-8xl"
+                  className="mx-auto max-w-4xl text-5xl font-black leading-[0.98] tracking-tight text-white sm:text-6xl lg:text-7xl"
                 >
-                  Você está pagando para o seu concorrente vender.
+                  Sua operacao pode vender mais sem depender de resposta manual.
                 </motion.h1>
 
                 <motion.p
                   variants={fadeUp}
                   custom={0.2}
-                  className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-zinc-300 sm:text-xl"
+                  className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-zinc-300 sm:text-xl"
                 >
-                  Implementamos infraestruturas de automação que respondem seus leads em 5 segundos no WhatsApp e organizam todo o seu funil comercial.
+                  A YANG estrutura atendimento, qualificacao e acompanhamento comercial para responder mais rapido, organizar o funil e aumentar a conversao dos seus leads.
                 </motion.p>
 
                 <motion.div
@@ -368,20 +368,20 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
                 >
                   <a
                     href="#formulario"
-                    className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-violet-600 px-8 py-4 text-base font-semibold text-white shadow-[0_0_40px_rgba(139,92,246,0.35)] transition duration-200 hover:bg-violet-500 hover:shadow-[0_0_50px_rgba(139,92,246,0.42)]"
+                    className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-white px-8 py-4 text-base font-semibold text-black shadow-[0_0_40px_rgba(255,255,255,0.12)] transition duration-200 hover:bg-zinc-200 hover:shadow-[0_0_50px_rgba(255,255,255,0.16)]"
                   >
-                    Quero Automatizar Minhas Vendas
+                    Quero estruturar minha operacao
                     <ArrowRight className="h-5 w-5 transition duration-200 group-hover:translate-x-1" />
                   </a>
-                  <div className="text-sm text-zinc-400">Sem equipe travada em tarefas repetitivas</div>
+                  <div className="text-sm text-zinc-400">Menos tarefa manual. Mais velocidade comercial.</div>
                 </motion.div>
               </motion.div>
 
               <div className="pointer-events-none absolute inset-x-0 bottom-16 hidden lg:block">
                 <div className="mx-auto grid max-w-6xl grid-cols-3 gap-4 px-8">
-                  <FloatingStat value="5s" label="Primeiro contato automatizado" className="justify-self-start" />
-                  <FloatingStat value="WhatsApp" label="Distribuição e resposta em tempo real" className="justify-self-center" />
-                  <FloatingStat value="CRM" label="Funil visual sincronizado" className="justify-self-end" />
+                  <FloatingStat value="5s" label="tempo para iniciar o atendimento" className="justify-self-start" />
+                  <FloatingStat value="WhatsApp" label="resposta padronizada e rastreavel" className="justify-self-center" />
+                  <FloatingStat value="CRM" label="pipeline visual para acompanhar tudo" className="justify-self-end" />
                 </div>
               </div>
             </section>
@@ -395,9 +395,9 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
             >
               <div className="mb-6 flex items-center justify-between gap-4">
                 <div>
-                  <p className="text-sm font-semibold uppercase tracking-[0.25em] text-violet-300">Gargalos</p>
+                  <p className="text-sm font-semibold uppercase tracking-[0.25em] text-zinc-400">Gargalos</p>
                   <h2 className="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl">
-                    Onde suas vendas estão escapando hoje.
+                    Onde sua operacao perde velocidade e dinheiro.
                   </h2>
                 </div>
               </div>
@@ -423,9 +423,9 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
               className="mx-auto max-w-6xl py-24"
             >
               <div className="mb-12 max-w-2xl">
-                <p className="text-sm font-semibold uppercase tracking-[0.25em] text-violet-300">Solução</p>
+                <p className="text-sm font-semibold uppercase tracking-[0.25em] text-zinc-400">Solucao</p>
                 <h2 className="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">
-                  Estrutura comercial automatizada para capturar, responder e converter.
+                  Um sistema comercial mais claro, rapido e pronto para escalar.
                 </h2>
               </div>
 
@@ -451,7 +451,7 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
                     key={item}
                     className="flex items-start gap-3 rounded-2xl border border-white/8 bg-black/10 p-4"
                   >
-                    <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-violet-300" />
+                    <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-white" />
                     <p className="text-sm leading-7 text-zinc-300">{item}</p>
                   </div>
                 ))}
@@ -467,24 +467,24 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
               className="mx-auto max-w-5xl py-10 pb-24"
             >
               <div className="relative overflow-hidden rounded-[34px] border border-white/10 bg-gradient-to-br from-white/[0.08] via-white/[0.05] to-white/[0.025] p-1 shadow-[0_24px_90px_rgba(0,0,0,0.5)]">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(139,92,246,0.16),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(168,85,247,0.12),transparent_32%)]" />
-                <div className="relative rounded-[30px] border border-white/8 bg-[#0E0F13]/95 p-8 backdrop-blur-xl sm:p-10 lg:p-12">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.12),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.08),transparent_32%)]" />
+                <div className="relative rounded-[30px] border border-white/8 bg-[#0A0A0A]/95 p-8 backdrop-blur-xl sm:p-10 lg:p-12">
                   <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
                     <div>
-                      <div className="inline-flex items-center gap-2 rounded-full border border-violet-400/20 bg-violet-500/10 px-4 py-2 text-sm text-violet-200 shadow-[0_10px_30px_rgba(139,92,246,0.08)]">
+                      <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-zinc-200 shadow-[0_10px_30px_rgba(255,255,255,0.04)]">
                         <ShieldCheck className="h-4 w-4" />
-                        Diagnóstico estratégico de automação
+                        Diagnostico estrategico de automacao
                       </div>
                       <h2 className="mt-5 text-3xl font-bold tracking-tight text-white sm:text-4xl">
-                        Descubra onde sua operação comercial está vazando vendas.
+                        Descubra onde sua operacao esta perdendo oportunidades.
                       </h2>
                       <p className="mt-4 max-w-xl text-base leading-8 text-zinc-300">
-                        Preencha seus dados e receba um diagnóstico inicial para entender como automatizar atendimento, qualificação e gestão de leads.
+                        Preencha seus dados para entender como estruturar atendimento, qualificacao e acompanhamento comercial com mais velocidade e previsibilidade.
                       </p>
 
                       <div className="mt-8 grid gap-4 sm:grid-cols-2">
-                        <MetricCard value="5s" label="para responder novos leads" />
-                        <MetricCard value="100%" label="dos contatos organizados no fluxo" />
+                        <MetricCard value="5s" label="para iniciar o contato com novos leads" />
+                        <MetricCard value="100%" label="de visibilidade sobre o pipeline comercial" />
                       </div>
                     </div>
 
@@ -493,7 +493,7 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
                       whileHover={{
                         boxShadow:
                           "0 22px 55px rgba(0,0,0,0.38), inset 0 1px 0 rgba(255,255,255,0.03)",
-                        borderColor: "rgba(139,92,246,0.20)",
+                        borderColor: "rgba(255,255,255,0.16)",
                       }}
                       className="rounded-[28px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.055),rgba(255,255,255,0.025))] p-6 shadow-[0_18px_50px_rgba(0,0,0,0.35)] backdrop-blur-xl sm:p-7"
                     >
@@ -504,7 +504,7 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
                         </div>
                         <div className="mt-2 h-2 overflow-hidden rounded-full bg-white/5">
                           <motion.div
-                            className="h-full rounded-full bg-gradient-to-r from-violet-500 via-fuchsia-500 to-violet-400"
+                            className="h-full rounded-full bg-gradient-to-r from-white via-zinc-300 to-white"
                             animate={{ width: `${completionHint}%` }}
                             transition={{ duration: 0.35 }}
                           />
@@ -547,9 +547,9 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
 
                         <button
                           type="submit"
-                          className="group inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-violet-600 px-6 py-4 text-base font-semibold text-white shadow-[0_0_40px_rgba(139,92,246,0.35)] transition duration-200 hover:bg-violet-500 hover:shadow-[0_0_54px_rgba(139,92,246,0.42)]"
+                          className="group inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-white px-6 py-4 text-base font-semibold text-black shadow-[0_0_40px_rgba(255,255,255,0.12)] transition duration-200 hover:bg-zinc-200 hover:shadow-[0_0_54px_rgba(255,255,255,0.16)]"
                         >
-                          Receber Diagnóstico Automático
+                          Quero receber um diagnostico
                           <ArrowRight className="h-5 w-5 transition duration-200 group-hover:translate-x-1" />
                         </button>
                       </div>
@@ -569,14 +569,14 @@ export function LandingPageAutomacaoB2BTests() {
   const hasThreeProblemCards = problems.length === 3;
   const hasThreeSolutionCards = solutions.length === 3;
   const copyPreserved =
-    problems[0].title === "O Lead Esfria Rápido" &&
-    solutions[1].title === "Resposta Instantânea";
+    problems[0].title === "Leads esfriam antes do seu time responder" &&
+    solutions[1].title === "Resposta imediata no momento certo";
   const cardHoverUsesNoLift =
     !/whileHover=\{\{ y: -8 \}\}/.test(String(SectionCard)) &&
     !/hover:-translate-y/.test(String(SectionCard));
   const metricCopyPreserved =
     ["5s", "100%"].every((value) => /5s|100%/.test(value)) &&
-    ["para responder novos leads", "dos contatos organizados no fluxo"].length === 2;
+    ["para iniciar o contato com novos leads", "de visibilidade sobre o pipeline comercial"].length === 2;
 
   return (
     <div className="hidden" aria-hidden="true">
