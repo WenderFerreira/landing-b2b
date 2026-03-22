@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import type { ChangeEvent, FormEvent, ReactNode } from "react";
 import {
@@ -22,19 +22,13 @@ type FormData = {
 };
 
 type LandingPageProps = {
-  onSubmit?: (data: FormData) => void;
+  onSubmit?: (data: FormData) => void | Promise<void>;
 };
 
 type SectionItem = {
   title: string;
   description: string;
   icon: LucideIcon;
-};
-
-type FloatingStatProps = {
-  value: string;
-  label: string;
-  className?: string;
 };
 
 type MetricCardProps = {
@@ -54,52 +48,54 @@ type InputFieldProps = React.InputHTMLAttributes<HTMLInputElement> & {
   label: string;
 };
 
+type SubmitState = "idle" | "loading" | "success" | "error";
+
 const problems: SectionItem[] = [
   {
-    title: "Leads esfriam antes do seu time responder",
+    title: "A janela de ouro fechou",
     description:
-      "Quando o primeiro contato demora, a oportunidade perde valor e o concorrente entra na frente.",
+      "O lead de hoje não espera 30 minutos. Se você não responde na hora, ele já está no WhatsApp do seu concorrente com o cartão na mão.",
     icon: Clock3,
   },
   {
-    title: "WhatsApp sem processo vira perda de oportunidade",
+    title: "Equipe travada no Ctrl+C / Ctrl+V",
     description:
-      "Mensagens dispersas, follow-ups esquecidos e atendimento sem padrão reduzem a conversão do comercial.",
+      "Vendedores caros perdem horas com saudações manuais e triagem básica, quando deveriam estar focados no fechamento.",
     icon: MessageCircleMore,
   },
   {
-    title: "Seu investimento em tráfego não vira venda",
+    title: "O cemitério de leads cresce em silêncio",
     description:
-      "Você paga para gerar demanda, mas perde receita quando os leads não entram em um fluxo de vendas eficiente.",
+      "Contatos valiosos se perdem no meio de conversas desorganizadas, sem histórico claro e sem follow-up consistente.",
     icon: BadgeDollarSign,
   },
 ];
 
 const solutions: SectionItem[] = [
   {
-    title: "Captação e triagem automáticas",
+    title: "Captura cirúrgica",
     description:
-      "Centralize leads de anúncios, formulários e canais de entrada com qualificação automática desde o primeiro contato.",
+      "Páginas desenhadas para conversão máxima. O cliente demonstra interesse e o cronômetro da sua venda começa a rodar instantaneamente.",
     icon: Funnel,
   },
   {
-    title: "Resposta imediata no momento certo",
+    title: "Disparo em 5 segundos",
     description:
-      "Dispare respostas em segundos no WhatsApp com contexto e direcionamento para acelerar o avanço da conversa.",
+      "Sem intervenção humana, o sistema aciona o lead, entrega a primeira resposta e mapeia a necessidade dele. O efeito \"uau\" é imediato.",
     icon: Zap,
   },
   {
-    title: "Pipeline claro para acompanhar e fechar",
+    title: "Gestão visual sincronizada",
     description:
-      "Organize etapas, responsáveis e próximos passos em um CRM visual para não deixar nenhuma oportunidade escapar.",
+      "Cada contato e cada etapa da negociação são espelhados em um painel visual inteligente. Sua equipe entra apenas para finalizar o acordo.",
     icon: LayoutDashboard,
   },
 ];
 
 const highlights = [
-  "Processo comercial desenhado para vender com previsibilidade",
-  "WhatsApp com atendimento rápido, padrão e rastreável",
-  "CRM visual para acompanhar, cobrar e fechar com clareza",
+  "Clique no anúncio e resposta imediata no WhatsApp",
+  "Organização total do fluxo comercial em um CRM visual",
+  "Menos atraso humano, mais velocidade e mais conversão",
 ];
 
 const fadeUp = {
@@ -138,24 +134,8 @@ function GlowBackground() {
         animate={{ x: [0, 18, 0], y: [0, -14, 0] }}
         transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
       />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.08),transparent_30%),linear-gradient(to_bottom,rgba(255,255,255,0.03),transparent_18%),linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:100%_100%,100%_100%,64px_64px,64px_64px] opacity-[0.22]" />
-      <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-white/6 to-transparent" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.08),transparent_30%),linear-gradient(to_bottom,rgba(255,255,255,0.03),transparent_18%),linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:100%_100%,100%_100%,64px_64px,64px_64px] opacity-[0.2]" />
     </div>
-  );
-}
-
-function FloatingStat({ value, label, className = "" }: FloatingStatProps) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.5 }}
-      transition={{ duration: 0.6 }}
-      className={`rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3 backdrop-blur-xl shadow-[0_10px_30px_rgba(0,0,0,0.25)] ${className}`}
-    >
-      <div className="text-lg font-semibold text-white">{value}</div>
-      <div className="mt-1 text-xs text-zinc-400">{label}</div>
-    </motion.div>
   );
 }
 
@@ -206,12 +186,6 @@ function SectionCard({ icon: Icon, title, description, index }: SectionCardProps
           boxShadow:
             "inset 0 1px 0 rgba(255,255,255,0.08), inset 0 0 0 1px rgba(255,255,255,0.12), 0 0 0 1px rgba(255,255,255,0.04)",
         }}
-      />
-      <motion.div
-        className="absolute inset-x-6 top-0 h-px origin-left bg-gradient-to-r from-transparent via-white/50 to-transparent"
-        variants={{ hover: { scaleX: 1.08, opacity: 1 } }}
-        transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-        style={{ scaleX: 0.82, opacity: 0.7 }}
       />
       <div className="relative">
         <motion.div
@@ -276,21 +250,55 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
     whatsapp: "",
     email: "",
   });
+  const [submitState, setSubmitState] = useState<SubmitState>("idle");
+  const [submitMessage, setSubmitMessage] = useState("");
+
+  const webhookUrl = import.meta.env.VITE_N8N_WEBHOOK_URL;
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setSubmitState("loading");
+    setSubmitMessage("");
 
-    if (typeof onSubmit === "function") {
-      onSubmit(formData);
-      return;
+    try {
+      if (typeof onSubmit === "function") {
+        await onSubmit(formData);
+      } else {
+        if (!webhookUrl) {
+          throw new Error("Webhook do n8n não configurado.");
+        }
+
+        const response = await fetch(webhookUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            ...formData,
+            origem: "lp-yang",
+            submittedAt: new Date().toISOString(),
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error("Não foi possível enviar seus dados agora.");
+        }
+      }
+
+      setSubmitState("success");
+      setSubmitMessage("Teste solicitado com sucesso. Agora é só acompanhar seu WhatsApp.");
+      setFormData({ nome: "", whatsapp: "", email: "" });
+    } catch (error) {
+      setSubmitState("error");
+      setSubmitMessage(
+        error instanceof Error ? error.message : "Ocorreu um erro ao enviar o formulário.",
+      );
     }
-
-    console.log("Formulário enviado:", formData);
   };
 
   const completionHint = useMemo(() => {
@@ -316,14 +324,14 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
               </div>
               <div>
                 <p className="text-xl font-semibold tracking-[0.38em] text-white sm:text-2xl">YANG</p>
-                <p className="text-sm text-zinc-400">Automação comercial para operações B2B</p>
+                <p className="text-sm text-zinc-400">Infraestrutura comercial automatizada</p>
               </div>
             </div>
             <a
               href="#formulario"
               className="hidden rounded-full border border-white/10 bg-white px-6 py-3 text-sm font-semibold text-black shadow-[0_0_30px_rgba(255,255,255,0.08)] transition duration-200 hover:bg-zinc-200 md:inline-flex"
             >
-              Falar com Especialista
+              Ver a Automação Funcionando
             </a>
           </motion.header>
 
@@ -338,17 +346,17 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
                 <motion.h1
                   variants={fadeUp}
                   custom={0.08}
-                  className="mx-auto max-w-4xl text-5xl font-black leading-[0.98] tracking-tight text-white sm:text-6xl lg:text-7xl"
+                  className="mx-auto max-w-5xl text-5xl font-black leading-[0.95] tracking-tight text-white sm:text-6xl lg:text-7xl"
                 >
-                  Sua operação pode vender mais sem depender de resposta manual.
+                  O sistema que transforma um clique no anúncio em atendimento instantâneo de 5 segundos.
                 </motion.h1>
 
                 <motion.p
                   variants={fadeUp}
                   custom={0.16}
-                  className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-zinc-300 sm:text-xl"
+                  className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-zinc-300 sm:text-xl"
                 >
-                  A YANG estrutura atendimento, qualificação e acompanhamento comercial para responder mais rápido, organizar o funil e aumentar a conversão dos seus leads.
+                  Elimine o atraso humano. Com a YANG, capturamos seu lead, iniciamos a negociação no WhatsApp imediatamente e organizamos todo o fluxo no seu CRM. O fim do caos comercial.
                 </motion.p>
 
                 <motion.div
@@ -360,20 +368,12 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
                     href="#formulario"
                     className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-white px-8 py-4 text-base font-semibold text-black shadow-[0_0_40px_rgba(255,255,255,0.12)] transition duration-200 hover:bg-zinc-200 hover:shadow-[0_0_50px_rgba(255,255,255,0.16)]"
                   >
-                    Quero estruturar minha operação
+                    Ver a Automação Funcionando
                     <ArrowRight className="h-5 w-5 transition duration-200 group-hover:translate-x-1" />
                   </a>
-                  <div className="text-sm text-zinc-400">Menos tarefa manual. Mais velocidade comercial.</div>
+                  <div className="text-sm text-zinc-400">Atendimento instantâneo, fluxo organizado e negociação sem atraso.</div>
                 </motion.div>
               </motion.div>
-
-              <div className="pointer-events-none absolute inset-x-0 bottom-16 hidden lg:block">
-                <div className="mx-auto grid max-w-6xl grid-cols-3 gap-4 px-8">
-                  <FloatingStat value="5s" label="tempo para iniciar o atendimento" className="justify-self-start" />
-                  <FloatingStat value="WhatsApp" label="resposta padronizada e rastreável" className="justify-self-center" />
-                  <FloatingStat value="CRM" label="pipeline visual para acompanhar tudo" className="justify-self-end" />
-                </div>
-              </div>
             </section>
 
             <motion.section
@@ -385,9 +385,9 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
             >
               <div className="mb-6 flex items-center justify-between gap-4">
                 <div>
-                  <p className="text-sm font-semibold uppercase tracking-[0.25em] text-zinc-400">Gargalos</p>
+                  <p className="text-sm font-semibold uppercase tracking-[0.25em] text-zinc-400">Yin</p>
                   <h2 className="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl">
-                    Onde sua operação perde velocidade e dinheiro.
+                    A regra do jogo mudou: quem demora, não vende.
                   </h2>
                 </div>
               </div>
@@ -412,10 +412,10 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
               variants={stagger}
               className="mx-auto max-w-6xl py-24"
             >
-              <div className="mb-12 max-w-2xl">
-                <p className="text-sm font-semibold uppercase tracking-[0.25em] text-zinc-400">Solução</p>
+              <div className="mb-12 max-w-3xl">
+                <p className="text-sm font-semibold uppercase tracking-[0.25em] text-zinc-400">Yang</p>
                 <h2 className="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">
-                  Um sistema comercial mais claro, rápido e pronto para escalar.
+                  A infraestrutura que trabalha na velocidade da luz.
                 </h2>
               </div>
 
@@ -463,18 +463,18 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
                     <div>
                       <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-zinc-200 shadow-[0_10px_30px_rgba(255,255,255,0.04)]">
                         <ShieldCheck className="h-4 w-4" />
-                        Diagnóstico estratégico de automação
+                        O teste de velocidade
                       </div>
                       <h2 className="mt-5 text-3xl font-bold tracking-tight text-white sm:text-4xl">
-                        Descubra onde sua operação está perdendo oportunidades.
+                        Sinta o impacto no seu próprio celular.
                       </h2>
                       <p className="mt-4 max-w-xl text-base leading-8 text-zinc-300">
-                        Preencha seus dados para entender como estruturar atendimento, qualificação e acompanhamento comercial com mais velocidade e previsibilidade.
+                        Não acredite apenas em palavras. Preencha o formulário abaixo e veja como a tecnologia YANG vai abordar seus futuros clientes em tempo real.
                       </p>
 
                       <div className="mt-8 grid gap-4 sm:grid-cols-2">
-                        <MetricCard value="5s" label="para iniciar o contato com novos leads" />
-                        <MetricCard value="100%" label="de visibilidade sobre o pipeline comercial" />
+                        <MetricCard value="5s" label="para iniciar uma negociação automática" />
+                        <MetricCard value="CRM" label="com todo o fluxo comercial espelhado" />
                       </div>
                     </div>
 
@@ -526,7 +526,7 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
 
                         <InputField
                           id="email"
-                          label="E-mail corporativo"
+                          label="E-mail"
                           type="email"
                           name="email"
                           value={formData.email}
@@ -537,11 +537,22 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
 
                         <button
                           type="submit"
-                          className="group inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-white px-6 py-4 text-base font-semibold text-black shadow-[0_0_40px_rgba(255,255,255,0.12)] transition duration-200 hover:bg-zinc-200 hover:shadow-[0_0_54px_rgba(255,255,255,0.16)]"
+                          disabled={submitState === "loading"}
+                          className="group inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-white px-6 py-4 text-base font-semibold uppercase tracking-[0.06em] text-black shadow-[0_0_40px_rgba(255,255,255,0.12)] transition duration-200 hover:bg-zinc-200 hover:shadow-[0_0_54px_rgba(255,255,255,0.16)] disabled:cursor-not-allowed disabled:opacity-70"
                         >
-                          Quero receber um diagnóstico
+                          {submitState === "loading" ? "Enviando teste..." : "TESTAR VELOCIDADE DE RESPOSTA ⚡"}
                           <ArrowRight className="h-5 w-5 transition duration-200 group-hover:translate-x-1" />
                         </button>
+
+                        {submitMessage ? (
+                          <p
+                            className={`text-sm leading-6 ${
+                              submitState === "success" ? "text-zinc-200" : "text-red-300"
+                            }`}
+                          >
+                            {submitMessage}
+                          </p>
+                        ) : null}
                       </div>
                     </motion.form>
                   </div>
@@ -559,14 +570,14 @@ export function LandingPageAutomacaoB2BTests() {
   const hasThreeProblemCards = problems.length === 3;
   const hasThreeSolutionCards = solutions.length === 3;
   const copyPreserved =
-    problems[0].title === "Leads esfriam antes do seu time responder" &&
-    solutions[1].title === "Resposta imediata no momento certo";
+    problems[0].title === "A janela de ouro fechou" &&
+    solutions[1].title === "Disparo em 5 segundos";
   const cardHoverUsesNoLift =
     !/whileHover=\{\{ y: -8 \}\}/.test(String(SectionCard)) &&
     !/hover:-translate-y/.test(String(SectionCard));
   const metricCopyPreserved =
-    ["5s", "100%"].every((value) => /5s|100%/.test(value)) &&
-    ["para iniciar o contato com novos leads", "de visibilidade sobre o pipeline comercial"].length === 2;
+    ["5s", "CRM"].every((value) => /5s|CRM/.test(value)) &&
+    ["para iniciar uma negociação automática", "com todo o fluxo comercial espelhado"].length === 2;
 
   return (
     <div className="hidden" aria-hidden="true">
