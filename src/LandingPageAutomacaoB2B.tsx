@@ -65,41 +65,41 @@ const problems: SectionItem[] = [
   {
     title: "WhatsApp sem processo vira perda de oportunidade",
     description:
-      "Mensagens dispersas, follow-ups esquecidos e atendimento sem padrao reduzem a conversao do comercial.",
+      "Mensagens dispersas, follow-ups esquecidos e atendimento sem padrão reduzem a conversão do comercial.",
     icon: MessageCircleMore,
   },
   {
-    title: "Seu investimento em trafego nao vira venda",
+    title: "Seu investimento em tráfego não vira venda",
     description:
-      "Voce paga para gerar demanda, mas perde receita quando os leads nao entram em um fluxo de vendas eficiente.",
+      "Você paga para gerar demanda, mas perde receita quando os leads não entram em um fluxo de vendas eficiente.",
     icon: BadgeDollarSign,
   },
 ];
 
 const solutions: SectionItem[] = [
   {
-    title: "Captacao e triagem automaticas",
+    title: "Captação e triagem automáticas",
     description:
-      "Centralize leads de anuncios, formularios e canais de entrada com qualificacao automatica desde o primeiro contato.",
+      "Centralize leads de anúncios, formulários e canais de entrada com qualificação automática desde o primeiro contato.",
     icon: Funnel,
   },
   {
     title: "Resposta imediata no momento certo",
     description:
-      "Dispare respostas em segundos no WhatsApp com contexto e direcionamento para acelerar o avanco da conversa.",
+      "Dispare respostas em segundos no WhatsApp com contexto e direcionamento para acelerar o avanço da conversa.",
     icon: Zap,
   },
   {
     title: "Pipeline claro para acompanhar e fechar",
     description:
-      "Organize etapas, responsaveis e proximos passos em um CRM visual para nao deixar nenhuma oportunidade escapar.",
+      "Organize etapas, responsáveis e próximos passos em um CRM visual para não deixar nenhuma oportunidade escapar.",
     icon: LayoutDashboard,
   },
 ];
 
 const highlights = [
   "Processo comercial desenhado para vender com previsibilidade",
-  "WhatsApp com atendimento rapido, padrao e rastreavel",
+  "WhatsApp com atendimento rápido, padrão e rastreável",
   "CRM visual para acompanhar, cobrar e fechar com clareza",
 ];
 
@@ -291,7 +291,7 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
       return;
     }
 
-    console.log("Formulario enviado:", formData);
+    console.log("Formulário enviado:", formData);
   };
 
   const completionHint = useMemo(() => {
@@ -317,7 +317,7 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
               </div>
               <div>
                 <p className="text-sm font-semibold tracking-[0.22em] text-white">YANG</p>
-                <p className="text-xs text-zinc-400">Automacao comercial para operacoes B2B</p>
+                <p className="text-xs text-zinc-400">Automação comercial para operações B2B</p>
               </div>
             </div>
             <a
@@ -342,7 +342,7 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
                   className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-zinc-300 backdrop-blur-xl shadow-[0_10px_30px_rgba(0,0,0,0.25)]"
                 >
                   <Activity className="h-4 w-4 text-white" />
-                  Atendimento, qualificacao e CRM integrados em um unico fluxo
+                  Atendimento, qualificação e CRM integrados em um único fluxo
                 </motion.div>
 
                 <motion.h1
@@ -350,7 +350,7 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
                   custom={0.12}
                   className="mx-auto max-w-4xl text-5xl font-black leading-[0.98] tracking-tight text-white sm:text-6xl lg:text-7xl"
                 >
-                  Sua operacao pode vender mais sem depender de resposta manual.
+                  Sua operação pode vender mais sem depender de resposta manual.
                 </motion.h1>
 
                 <motion.p
@@ -358,7 +358,7 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
                   custom={0.2}
                   className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-zinc-300 sm:text-xl"
                 >
-                  A YANG estrutura atendimento, qualificacao e acompanhamento comercial para responder mais rapido, organizar o funil e aumentar a conversao dos seus leads.
+                  A YANG estrutura atendimento, qualificação e acompanhamento comercial para responder mais rápido, organizar o funil e aumentar a conversão dos seus leads.
                 </motion.p>
 
                 <motion.div
@@ -370,7 +370,7 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
                     href="#formulario"
                     className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-white px-8 py-4 text-base font-semibold text-black shadow-[0_0_40px_rgba(255,255,255,0.12)] transition duration-200 hover:bg-zinc-200 hover:shadow-[0_0_50px_rgba(255,255,255,0.16)]"
                   >
-                    Quero estruturar minha operacao
+                    Quero estruturar minha operação
                     <ArrowRight className="h-5 w-5 transition duration-200 group-hover:translate-x-1" />
                   </a>
                   <div className="text-sm text-zinc-400">Menos tarefa manual. Mais velocidade comercial.</div>
@@ -380,7 +380,7 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
               <div className="pointer-events-none absolute inset-x-0 bottom-16 hidden lg:block">
                 <div className="mx-auto grid max-w-6xl grid-cols-3 gap-4 px-8">
                   <FloatingStat value="5s" label="tempo para iniciar o atendimento" className="justify-self-start" />
-                  <FloatingStat value="WhatsApp" label="resposta padronizada e rastreavel" className="justify-self-center" />
+                  <FloatingStat value="WhatsApp" label="resposta padronizada e rastreável" className="justify-self-center" />
                   <FloatingStat value="CRM" label="pipeline visual para acompanhar tudo" className="justify-self-end" />
                 </div>
               </div>
@@ -397,7 +397,7 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
                 <div>
                   <p className="text-sm font-semibold uppercase tracking-[0.25em] text-zinc-400">Gargalos</p>
                   <h2 className="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl">
-                    Onde sua operacao perde velocidade e dinheiro.
+                    Onde sua operação perde velocidade e dinheiro.
                   </h2>
                 </div>
               </div>
@@ -423,9 +423,9 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
               className="mx-auto max-w-6xl py-24"
             >
               <div className="mb-12 max-w-2xl">
-                <p className="text-sm font-semibold uppercase tracking-[0.25em] text-zinc-400">Solucao</p>
+                <p className="text-sm font-semibold uppercase tracking-[0.25em] text-zinc-400">Solução</p>
                 <h2 className="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">
-                  Um sistema comercial mais claro, rapido e pronto para escalar.
+                  Um sistema comercial mais claro, rápido e pronto para escalar.
                 </h2>
               </div>
 
@@ -473,13 +473,13 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
                     <div>
                       <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-zinc-200 shadow-[0_10px_30px_rgba(255,255,255,0.04)]">
                         <ShieldCheck className="h-4 w-4" />
-                        Diagnostico estrategico de automacao
+                        Diagnóstico estratégico de automação
                       </div>
                       <h2 className="mt-5 text-3xl font-bold tracking-tight text-white sm:text-4xl">
-                        Descubra onde sua operacao esta perdendo oportunidades.
+                        Descubra onde sua operação está perdendo oportunidades.
                       </h2>
                       <p className="mt-4 max-w-xl text-base leading-8 text-zinc-300">
-                        Preencha seus dados para entender como estruturar atendimento, qualificacao e acompanhamento comercial com mais velocidade e previsibilidade.
+                        Preencha seus dados para entender como estruturar atendimento, qualificação e acompanhamento comercial com mais velocidade e previsibilidade.
                       </p>
 
                       <div className="mt-8 grid gap-4 sm:grid-cols-2">
@@ -549,7 +549,7 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
                           type="submit"
                           className="group inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-white px-6 py-4 text-base font-semibold text-black shadow-[0_0_40px_rgba(255,255,255,0.12)] transition duration-200 hover:bg-zinc-200 hover:shadow-[0_0_54px_rgba(255,255,255,0.16)]"
                         >
-                          Quero receber um diagnostico
+                          Quero receber um diagnóstico
                           <ArrowRight className="h-5 w-5 transition duration-200 group-hover:translate-x-1" />
                         </button>
                       </div>
