@@ -50,6 +50,9 @@ type InputFieldProps = React.InputHTMLAttributes<HTMLInputElement> & {
 
 type SubmitState = "idle" | "loading" | "success" | "error";
 
+const DEFAULT_N8N_WEBHOOK_URL =
+  "https://n8n-n8n.fq06t3.easypanel.host/webhook/yang-lead-capture";
+
 const problems: SectionItem[] = [
   {
     title: "A janela de ouro fechou",
@@ -253,7 +256,7 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
   const [submitState, setSubmitState] = useState<SubmitState>("idle");
   const [submitMessage, setSubmitMessage] = useState("");
 
-  const webhookUrl = import.meta.env.VITE_N8N_WEBHOOK_URL;
+  const webhookUrl = import.meta.env.VITE_N8N_WEBHOOK_URL || DEFAULT_N8N_WEBHOOK_URL;
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
