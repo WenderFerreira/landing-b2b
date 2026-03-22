@@ -2,7 +2,6 @@ import React, { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import type { ChangeEvent, FormEvent, ReactNode } from "react";
 import {
-  Activity,
   ArrowRight,
   BadgeDollarSign,
   CheckCircle2,
@@ -309,20 +308,20 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
             initial={{ opacity: 0, y: -16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="mx-auto flex max-w-6xl items-center justify-between rounded-full border border-white/10 bg-white/[0.045] px-4 py-3 shadow-[0_12px_30px_rgba(0,0,0,0.25)] backdrop-blur-xl"
+            className="mx-auto flex max-w-6xl items-center justify-between rounded-[32px] border border-white/10 bg-gradient-to-r from-white/[0.08] via-white/[0.03] to-white/[0.06] px-5 py-4 shadow-[0_18px_40px_rgba(0,0,0,0.28)] backdrop-blur-xl"
           >
-            <div className="flex items-center gap-3">
-              <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/5 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] ring-1 ring-white/10">
-                <Sparkles className="h-5 w-5 text-white" />
+            <div className="flex items-center gap-4">
+              <div className="flex h-14 w-14 items-center justify-center rounded-[22px] border border-white/10 bg-white/5 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] ring-1 ring-white/10">
+                <Sparkles className="h-6 w-6 text-white" />
               </div>
               <div>
-                <p className="text-sm font-semibold tracking-[0.22em] text-white">YANG</p>
-                <p className="text-xs text-zinc-400">Automação comercial para operações B2B</p>
+                <p className="text-xl font-semibold tracking-[0.38em] text-white sm:text-2xl">YANG</p>
+                <p className="text-sm text-zinc-400">Automação comercial para operações B2B</p>
               </div>
             </div>
             <a
               href="#formulario"
-              className="hidden rounded-full border border-white/10 bg-white px-5 py-2.5 text-sm font-semibold text-black shadow-[0_0_30px_rgba(255,255,255,0.08)] transition duration-200 hover:bg-zinc-200 md:inline-flex"
+              className="hidden rounded-full border border-white/10 bg-white px-6 py-3 text-sm font-semibold text-black shadow-[0_0_30px_rgba(255,255,255,0.08)] transition duration-200 hover:bg-zinc-200 md:inline-flex"
             >
               Falar com Especialista
             </a>
@@ -336,18 +335,9 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
                 variants={stagger}
                 className="relative z-10"
               >
-                <motion.div
-                  variants={fadeUp}
-                  custom={0.05}
-                  className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-zinc-300 backdrop-blur-xl shadow-[0_10px_30px_rgba(0,0,0,0.25)]"
-                >
-                  <Activity className="h-4 w-4 text-white" />
-                  Atendimento, qualificação e CRM integrados em um único fluxo
-                </motion.div>
-
                 <motion.h1
                   variants={fadeUp}
-                  custom={0.12}
+                  custom={0.08}
                   className="mx-auto max-w-4xl text-5xl font-black leading-[0.98] tracking-tight text-white sm:text-6xl lg:text-7xl"
                 >
                   Sua operação pode vender mais sem depender de resposta manual.
@@ -355,7 +345,7 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
 
                 <motion.p
                   variants={fadeUp}
-                  custom={0.2}
+                  custom={0.16}
                   className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-zinc-300 sm:text-xl"
                 >
                   A YANG estrutura atendimento, qualificação e acompanhamento comercial para responder mais rápido, organizar o funil e aumentar a conversão dos seus leads.
@@ -363,7 +353,7 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
 
                 <motion.div
                   variants={fadeUp}
-                  custom={0.28}
+                  custom={0.24}
                   className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center"
                 >
                   <a
