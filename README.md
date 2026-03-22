@@ -15,14 +15,13 @@ npm run dev
 npm run build
 ```
 
-## Deploy no EasyPanel via GitHub
-
-Use a opcao `Dockerfile` no EasyPanel.
+## Deploy no EasyPanel com Nixpacks
 
 - Provider: `GitHub`
 - Repository: `WenderFerreira/landing-b2b`
 - Branch: `main`
-- Build Type: `Dockerfile`
-- Port: `80`
+- Build Type: `Nixpacks`
+- Root Directory: `/`
+- Port: `4173`
 
-O projeto possui [`Dockerfile`](/C:/Users/pichau/landing-b2b/Dockerfile) e [`nginx.conf`](/C:/Users/pichau/landing-b2b/nginx.conf) prontos para buildar a app e servir os arquivos estaticos.
+O arquivo [`nixpacks.toml`](/C:/Users/pichau/landing-b2b/nixpacks.toml) fixa o Node 20 e usa `npm ci`, `npm run build` e `npm run start`.

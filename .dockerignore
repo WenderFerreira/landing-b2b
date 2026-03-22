@@ -1,9 +1,0 @@
-node_modules
-dist
-.git
-.gitignore
-.vscode
-landing-b2b-clean
-vite-dev.log
-vite-dev.err
-nixpacks.toml
