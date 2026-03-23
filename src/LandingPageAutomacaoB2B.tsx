@@ -392,15 +392,16 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
               <div className="mb-10 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
                 <div className="max-w-3xl">
                   <p className="text-sm font-semibold uppercase tracking-[0.3em] text-zinc-500">
-                    Estrutura
+                    Por que funciona
                   </p>
                   <h2 className="mt-3 text-3xl font-black tracking-tight text-white sm:text-4xl">
-                    A LP ficou mais direta, mais densa e visualmente mais forte.
+                    Seu lead recebe resposta enquanto o interesse ainda está no auge.
                   </h2>
                 </div>
                 <div className="max-w-xl rounded-[24px] border border-white/10 bg-white/[0.02] p-5 text-sm leading-7 text-zinc-400">
-                  O visual agora trabalha com contraste seco, grid fino e blocos mais
-                  arquitetônicos para passar sensação de sistema, velocidade e controle.
+                  Enquanto outras empresas demoram para responder, sua operação aborda,
+                  qualifica e organiza o lead em segundos, com mais velocidade, clareza e
+                  chance real de conversão.
                 </div>
               </div>
 
