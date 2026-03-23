@@ -3,14 +3,12 @@ import { motion } from "framer-motion";
 import type { ChangeEvent, FormEvent, ReactNode } from "react";
 import {
   ArrowRight,
-  BadgeDollarSign,
   CheckCircle2,
-  Clock3,
+  Cog,
   Funnel,
   LayoutDashboard,
   MessageCircleMore,
   ShieldCheck,
-  Sparkles,
   Zap,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
@@ -25,21 +23,19 @@ type LandingPageProps = {
   onSubmit?: (data: FormData) => void | Promise<void>;
 };
 
-type SectionItem = {
-  title: string;
-  description: string;
-  icon: LucideIcon;
-};
-
-type MetricCardProps = {
+type HighlightCard = {
   value: string;
   label: string;
+  description: string;
+  icon: LucideIcon;
 };
 
-type SectionCardProps = {
-  icon: LucideIcon;
+type WorkflowItem = {
   title: string;
   description: string;
+};
+
+type WorkflowCardProps = WorkflowItem & {
   index: number;
 };
 
@@ -53,56 +49,53 @@ type SubmitState = "idle" | "loading" | "success" | "error";
 const DEFAULT_N8N_WEBHOOK_URL =
   "https://n8n-n8n.fq06t3.easypanel.host/webhook/yang-lead-capture";
 
-const problems: SectionItem[] = [
+const highlightCards: HighlightCard[] = [
   {
-    title: "A janela de ouro fechou",
-    description:
-      "O lead de hoje não espera 30 minutos. Se você não responde na hora, ele já está no WhatsApp do seu concorrente com o cartão na mão.",
-    icon: Clock3,
+    value: "5s",
+    label: "Primeiro contato automatizado",
+    description: "Seu lead recebe retorno enquanto ainda esta quente.",
+    icon: Cog,
   },
   {
-    title: "Equipe travada no Ctrl+C / Ctrl+V",
-    description:
-      "Vendedores caros perdem horas com saudações manuais e triagem básica, quando deveriam estar focados no fechamento.",
+    value: "WhatsApp",
+    label: "Distribuicao e resposta em tempo real",
+    description: "Cada entrada ja cai no fluxo certo com contexto.",
     icon: MessageCircleMore,
   },
   {
-    title: "O cemitério de leads cresce em silêncio",
-    description:
-      "Contatos valiosos se perdem no meio de conversas desorganizadas, sem histórico claro e sem follow-up consistente.",
-    icon: BadgeDollarSign,
-  },
-];
-
-const solutions: SectionItem[] = [
-  {
-    title: "Captura cirúrgica",
-    description:
-      "Páginas desenhadas para conversão máxima. O cliente demonstra interesse e o cronômetro da sua venda começa a rodar instantaneamente.",
+    value: "CRM",
+    label: "Funil visual sincronizado",
+    description: "Time comercial entra para vender, nao para organizar.",
     icon: Funnel,
   },
+];
+
+const workflowItems: WorkflowItem[] = [
   {
-    title: "Disparo em 5 segundos",
+    title: "Captura em pagina orientada a conversao",
     description:
-      "Sem intervenção humana, o sistema aciona o lead, entrega a primeira resposta e mapeia a necessidade dele. O efeito \"uau\" é imediato.",
-    icon: Zap,
+      "A estrutura da LP empurra a decisao com mensagem curta, contraste alto e CTA dominante.",
   },
   {
-    title: "Gestão visual sincronizada",
+    title: "Resposta imediata no WhatsApp",
     description:
-      "Cada contato e cada etapa da negociação são espelhados em um painel visual inteligente. Sua equipe entra apenas para finalizar o acordo.",
-    icon: LayoutDashboard,
+      "Assim que o lead entra, a automacao dispara contato, qualifica e registra o contexto sem atraso humano.",
+  },
+  {
+    title: "Pipeline limpo e operacao visivel",
+    description:
+      "Cada lead aparece no CRM com historico claro para a equipe atuar apenas onde existe chance real de fechamento.",
   },
 ];
 
-const highlights = [
-  "Clique no anúncio e resposta imediata no WhatsApp",
-  "Organização total do fluxo comercial em um CRM visual",
-  "Menos atraso humano, mais velocidade e mais conversão",
+const proofPoints = [
+  "Landing pages pensadas para acao rapida, nao para distraicao.",
+  "Automacao com resposta instantanea em ate 5 segundos.",
+  "CRM visual sincronizado com a conversa do lead.",
 ];
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
+  hidden: { opacity: 0, y: 30 },
   visible: (delay = 0) => ({
     opacity: 1,
     y: 0,
@@ -114,116 +107,101 @@ const stagger = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.12,
+      staggerChildren: 0.11,
     },
   },
 };
 
-function GlowBackground() {
+function GridBackground() {
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden">
+      <div className="absolute inset-0 bg-[#020202]" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.08)_1px,transparent_1px)] bg-[size:56px_56px] opacity-[0.14]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.09),transparent_30%),radial-gradient(circle_at_50%_35%,rgba(255,255,255,0.05),transparent_32%),linear-gradient(180deg,rgba(255,255,255,0.03),transparent_18%),linear-gradient(180deg,transparent,rgba(255,255,255,0.02)_82%,rgba(255,255,255,0.06))]" />
       <motion.div
-        className="absolute left-1/2 top-[-120px] h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-white/8 blur-3xl"
-        animate={{ scale: [1, 1.08, 1], opacity: [0.32, 0.5, 0.32] }}
+        className="absolute left-1/2 top-[-180px] h-[460px] w-[460px] -translate-x-1/2 rounded-full border border-white/10 bg-white/[0.04] blur-3xl"
+        animate={{ opacity: [0.22, 0.34, 0.22], scale: [1, 1.06, 1] }}
         transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
-        className="absolute right-[-60px] top-40 h-[340px] w-[340px] rounded-full bg-white/5 blur-3xl"
-        animate={{ x: [0, -16, 0], y: [0, 12, 0] }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="absolute left-[-50px] bottom-20 h-[280px] w-[280px] rounded-full bg-white/4 blur-3xl"
+        className="absolute bottom-[-120px] left-[8%] h-[280px] w-[280px] rounded-full border border-white/8 bg-white/[0.03] blur-3xl"
         animate={{ x: [0, 18, 0], y: [0, -14, 0] }}
         transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
       />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.08),transparent_30%),linear-gradient(to_bottom,rgba(255,255,255,0.03),transparent_18%),linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:100%_100%,100%_100%,64px_64px,64px_64px] opacity-[0.2]" />
+      <motion.div
+        className="absolute right-[6%] top-[18%] h-[220px] w-[220px] rounded-full border border-white/8 bg-white/[0.03] blur-3xl"
+        animate={{ x: [0, -16, 0], y: [0, 12, 0] }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+      />
     </div>
   );
 }
 
-function MetricCard({ value, label }: MetricCardProps) {
+function BrandMark() {
+  return (
+    <div className="relative flex h-14 w-14 items-center justify-center rounded-full border border-white/20 bg-white/[0.04] shadow-[0_0_0_1px_rgba(255,255,255,0.05),0_12px_30px_rgba(0,0,0,0.45)]">
+      <div className="absolute h-[72%] w-[72%] rounded-full border border-white/10" />
+      <div className="absolute right-2 top-2 h-1.5 w-1.5 rounded-full bg-white" />
+      <div className="absolute right-3 top-[16px] h-5 w-px bg-white/40" />
+      <div className="absolute left-[10px] top-1/2 h-px w-3 bg-white/30" />
+      <Cog className="h-6 w-6 text-white" strokeWidth={1.8} />
+    </div>
+  );
+}
+
+function SignalPill({ children }: { children: ReactNode }) {
+  return (
+    <div className="inline-flex items-center rounded-full border border-white/14 bg-white/[0.03] px-4 py-2 text-[11px] font-medium uppercase tracking-[0.24em] text-zinc-300">
+      {children}
+    </div>
+  );
+}
+
+function HeroCard({ value, label, description, icon: Icon }: HighlightCard) {
   return (
     <motion.div
+      variants={fadeUp}
       whileHover={{
-        boxShadow: "0 18px 40px rgba(0,0,0,0.26), inset 0 1px 0 rgba(255,255,255,0.04)",
-        borderColor: "rgba(255,255,255,0.18)",
+        borderColor: "rgba(255,255,255,0.28)",
+        boxShadow: "0 22px 50px rgba(0,0,0,0.42), inset 0 1px 0 rgba(255,255,255,0.08)",
       }}
       transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-      className="rounded-2xl border border-white/10 bg-black/20 p-5 shadow-[0_12px_30px_rgba(0,0,0,0.2)]"
+      className="relative overflow-hidden rounded-[28px] border border-white/12 bg-[linear-gradient(180deg,rgba(28,28,28,0.9),rgba(12,12,12,0.92))] p-6 shadow-[0_18px_40px_rgba(0,0,0,0.45)]"
     >
-      <p className="text-3xl font-bold text-white">{value}</p>
-      <p className="mt-1 text-sm text-zinc-400">{label}</p>
+      <div className="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-white/45 to-transparent" />
+      <div className="absolute inset-y-6 right-0 w-px bg-gradient-to-b from-transparent via-white/14 to-transparent" />
+      <div className="flex items-start gap-4">
+        <div className="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-white/18 bg-black shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_0_24px_rgba(255,255,255,0.05)]">
+          <div className="absolute h-[78%] w-[78%] rounded-full border border-white/10" />
+          <Icon className="relative z-10 h-5 w-5 text-white" strokeWidth={1.8} />
+        </div>
+        <div>
+          <p className="text-2xl font-black tracking-tight text-white">{value}</p>
+          <p className="mt-1 text-sm font-medium text-zinc-100">{label}</p>
+          <p className="mt-3 text-sm leading-7 text-zinc-400">{description}</p>
+        </div>
+      </div>
     </motion.div>
   );
 }
 
-function SectionCard({ icon: Icon, title, description, index }: SectionCardProps) {
+function WorkflowCard({ title, description, index }: WorkflowCardProps) {
   return (
     <motion.div
       variants={fadeUp}
       custom={0.08 * index}
-      initial={false}
-      whileHover="hover"
-      className="group relative overflow-hidden rounded-[28px] border border-white/10 bg-gradient-to-b from-white/[0.075] via-white/[0.035] to-white/[0.02] p-7 shadow-[0_22px_60px_rgba(0,0,0,0.35)] backdrop-blur-xl"
+      whileHover={{
+        borderColor: "rgba(255,255,255,0.22)",
+        backgroundColor: "rgba(255,255,255,0.04)",
+      }}
+      transition={{ duration: 0.3 }}
+      className="rounded-[26px] border border-white/10 bg-white/[0.02] p-7 shadow-[0_18px_40px_rgba(0,0,0,0.3)]"
     >
-      <motion.div
-        className="absolute inset-0"
-        variants={{
-          hover: {
-            background:
-              "radial-gradient(circle at 12% 18%, rgba(255,255,255,0.12), transparent 34%), radial-gradient(circle at 88% 82%, rgba(255,255,255,0.08), transparent 30%)",
-          },
-        }}
-        transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-        style={{
-          background:
-            "radial-gradient(circle at 12% 18%, rgba(255,255,255,0.08), transparent 30%), radial-gradient(circle at 88% 82%, rgba(255,255,255,0.04), transparent 26%)",
-        }}
-      />
-      <motion.div
-        className="absolute inset-0 rounded-[28px] opacity-0"
-        variants={{ hover: { opacity: 1 } }}
-        transition={{ duration: 0.45 }}
-        style={{
-          boxShadow:
-            "inset 0 1px 0 rgba(255,255,255,0.08), inset 0 0 0 1px rgba(255,255,255,0.12), 0 0 0 1px rgba(255,255,255,0.04)",
-        }}
-      />
-      <div className="relative">
-        <motion.div
-          variants={{
-            hover: {
-              boxShadow:
-                "inset 0 1px 0 rgba(255,255,255,0.10), 0 0 0 1px rgba(255,255,255,0.14), 0 10px 30px rgba(255,255,255,0.06)",
-              backgroundColor: "rgba(255,255,255,0.08)",
-            },
-          }}
-          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-white/5 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] ring-1 ring-white/10"
-        >
-          <motion.div
-            variants={{ hover: { rotate: -8, scale: 1.04 } }}
-            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <Icon className="h-6 w-6 text-white" />
-          </motion.div>
-        </motion.div>
-        <motion.h3
-          variants={{ hover: { color: "#ffffff" } }}
-          transition={{ duration: 0.3 }}
-          className="text-xl font-semibold tracking-tight text-white/95"
-        >
-          {title}
-        </motion.h3>
-        <motion.p
-          variants={{ hover: { color: "rgba(228,228,231,0.92)" } }}
-          transition={{ duration: 0.3 }}
-          className="mt-3 text-sm leading-7 text-zinc-400"
-        >
-          {description}
-        </motion.p>
+      <div className="mb-6 flex h-11 w-11 items-center justify-center rounded-full border border-white/14 bg-black text-sm font-semibold text-white">
+        0{index + 1}
       </div>
+      <h3 className="text-xl font-semibold tracking-tight text-white">{title}</h3>
+      <p className="mt-3 text-sm leading-7 text-zinc-400">{description}</p>
     </motion.div>
   );
 }
@@ -231,12 +209,12 @@ function SectionCard({ icon: Icon, title, description, index }: SectionCardProps
 function InputField({ id, label, className = "", ...props }: InputFieldProps) {
   return (
     <div>
-      <label htmlFor={id} className="mb-2 block text-sm font-medium text-zinc-300">
+      <label htmlFor={id} className="mb-2 block text-sm font-medium uppercase tracking-[0.16em] text-zinc-300">
         {label}
       </label>
       <input
         id={id}
-        className={`w-full rounded-2xl border border-white/10 bg-white/[0.045] px-4 py-3 text-white outline-none placeholder:text-zinc-500 transition duration-200 focus:border-white/30 focus:bg-white/[0.07] focus:shadow-[0_0_0_4px_rgba(255,255,255,0.08)] ${className}`}
+        className={`w-full rounded-[20px] border border-white/12 bg-white/[0.035] px-4 py-3.5 text-white outline-none placeholder:text-zinc-500 transition duration-200 focus:border-white/30 focus:bg-white/[0.06] focus:shadow-[0_0_0_4px_rgba(255,255,255,0.06)] ${className}`}
         {...props}
       />
     </div>
@@ -273,7 +251,7 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
         await onSubmit(formData);
       } else {
         if (!webhookUrl) {
-          throw new Error("Webhook do n8n não configurado.");
+          throw new Error("Webhook do n8n nao configurado.");
         }
 
         const response = await fetch(webhookUrl, {
@@ -283,23 +261,23 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
           },
           body: JSON.stringify({
             ...formData,
-            origem: "lp-yang",
+            origem: "lp-automacao-b2b",
             submittedAt: new Date().toISOString(),
           }),
         });
 
         if (!response.ok) {
-          throw new Error("Não foi possível enviar seus dados agora.");
+          throw new Error("Nao foi possivel enviar seus dados agora.");
         }
       }
 
       setSubmitState("success");
-      setSubmitMessage("Teste solicitado com sucesso. Agora é só acompanhar seu WhatsApp.");
+      setSubmitMessage("Pedido recebido. Agora e so acompanhar seu WhatsApp.");
       setFormData({ nome: "", whatsapp: "", email: "" });
     } catch (error) {
       setSubmitState("error");
       setSubmitMessage(
-        error instanceof Error ? error.message : "Ocorreu um erro ao enviar o formulário.",
+        error instanceof Error ? error.message : "Ocorreu um erro ao enviar o formulario.",
       );
     }
   };
@@ -310,73 +288,99 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
   }, [formData]);
 
   return (
-    <div className="min-h-screen overflow-hidden bg-[#050505] text-white selection:bg-white/20">
-      <div className="relative">
-        <GlowBackground />
+    <div className="min-h-screen overflow-hidden bg-[#020202] text-white selection:bg-white/20">
+      <div className="relative isolate">
+        <GridBackground />
 
-        <div className="relative mx-auto max-w-7xl px-6 py-8 lg:px-8">
+        <div className="relative mx-auto max-w-7xl px-5 py-6 sm:px-6 lg:px-8">
           <motion.header
             initial={{ opacity: 0, y: -16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="mx-auto flex max-w-6xl items-center justify-between rounded-[32px] border border-white/10 bg-gradient-to-r from-white/[0.08] via-white/[0.03] to-white/[0.06] px-5 py-4 shadow-[0_18px_40px_rgba(0,0,0,0.28)] backdrop-blur-xl"
+            className="mx-auto flex max-w-6xl flex-col gap-5 rounded-[32px] border border-white/10 bg-black/70 px-5 py-5 shadow-[0_16px_40px_rgba(0,0,0,0.45)] backdrop-blur-xl md:flex-row md:items-center md:justify-between"
           >
             <div className="flex items-center gap-4">
-              <div className="flex h-14 w-14 items-center justify-center rounded-[22px] border border-white/10 bg-white/5 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] ring-1 ring-white/10">
-                <Sparkles className="h-6 w-6 text-white" />
-              </div>
+              <BrandMark />
               <div>
-                <p className="text-xl font-semibold tracking-[0.38em] text-white sm:text-2xl">YANG</p>
-                <p className="text-sm text-zinc-400">Infraestrutura comercial automatizada</p>
+                <p className="text-lg font-semibold tracking-tight text-white sm:text-xl">
+                  Automacao B2B
+                </p>
+                <p className="mt-1 text-sm text-zinc-400">
+                  Infraestrutura comercial de alta conversao
+                </p>
               </div>
             </div>
+
             <a
               href="#formulario"
-              className="hidden rounded-full border border-white/10 bg-white px-6 py-3 text-sm font-semibold text-black shadow-[0_0_30px_rgba(255,255,255,0.08)] transition duration-200 hover:bg-zinc-200 md:inline-flex"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/12 bg-white px-5 py-3 text-sm font-semibold text-black transition duration-200 hover:bg-zinc-200"
             >
-              Ver a Automação Funcionando
+              Falar com Especialista
+              <ArrowRight className="h-4 w-4" />
             </a>
           </motion.header>
 
-          <main>
-            <section className="relative mx-auto flex min-h-[84vh] max-w-6xl flex-col items-center justify-center px-2 text-center">
-              <motion.div
-                initial="hidden"
-                animate="visible"
-                variants={stagger}
-                className="relative z-10"
-              >
-                <motion.h1
-                  variants={fadeUp}
-                  custom={0.08}
-                  className="mx-auto max-w-5xl text-5xl font-black leading-[0.95] tracking-tight text-white sm:text-6xl lg:text-7xl"
-                >
-                  O sistema que transforma um clique no anúncio em atendimento instantâneo de 5 segundos.
-                </motion.h1>
-
-                <motion.p
-                  variants={fadeUp}
-                  custom={0.16}
-                  className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-zinc-300 sm:text-xl"
-                >
-                  Elimine o atraso humano. Com a YANG, capturamos seu lead, iniciamos a negociação no WhatsApp imediatamente e organizamos todo o fluxo no seu CRM. O fim do caos comercial.
-                </motion.p>
+          <main className="mx-auto max-w-6xl">
+            <section className="relative pt-10 sm:pt-14">
+              <div className="relative overflow-hidden rounded-[38px] border border-white/10 bg-[linear-gradient(180deg,rgba(10,10,10,0.94),rgba(3,3,3,0.98))] px-6 py-10 shadow-[0_28px_80px_rgba(0,0,0,0.55)] sm:px-10 sm:py-12 lg:px-14 lg:py-14">
+                <div className="absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent" />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.05),transparent_40%)]" />
+                <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-white/[0.03] to-transparent" />
 
                 <motion.div
-                  variants={fadeUp}
-                  custom={0.24}
-                  className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center"
+                  initial="hidden"
+                  animate="visible"
+                  variants={stagger}
+                  className="relative z-10"
                 >
-                  <a
-                    href="#formulario"
-                    className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-white px-8 py-4 text-base font-semibold text-black shadow-[0_0_40px_rgba(255,255,255,0.12)] transition duration-200 hover:bg-zinc-200 hover:shadow-[0_0_50px_rgba(255,255,255,0.16)]"
+                  <motion.div variants={fadeUp} custom={0.05} className="flex justify-center">
+                    <SignalPill>Infraestrutura de vendas em modo automatico</SignalPill>
+                  </motion.div>
+
+                  <motion.h1
+                    variants={fadeUp}
+                    custom={0.12}
+                    className="mx-auto mt-8 max-w-5xl text-center text-5xl font-black leading-[0.92] tracking-[-0.04em] text-white sm:text-6xl lg:text-[5.4rem]"
                   >
-                    Ver a Automação Funcionando
-                    <ArrowRight className="h-5 w-5 transition duration-200 group-hover:translate-x-1" />
-                  </a>
-                  <div className="text-sm text-zinc-400">Atendimento instantâneo, fluxo organizado e negociação sem atraso.</div>
+                    Voce esta pagando para o seu concorrente vender.
+                  </motion.h1>
+
+                  <motion.p
+                    variants={fadeUp}
+                    custom={0.2}
+                    className="mx-auto mt-6 max-w-3xl text-center text-base leading-8 text-zinc-300 sm:text-xl"
+                  >
+                    Implementamos infraestruturas de automacao que respondem seus leads em 5
+                    segundos no WhatsApp e organizam todo o seu funil comercial.
+                  </motion.p>
+
+                  <motion.div
+                    variants={fadeUp}
+                    custom={0.28}
+                    className="mt-10 flex flex-col items-center justify-center gap-4"
+                  >
+                    <a
+                      href="#formulario"
+                      className="group inline-flex min-h-14 items-center justify-center gap-3 rounded-[20px] border border-white bg-white px-8 py-4 text-base font-bold text-black shadow-[0_0_40px_rgba(255,255,255,0.08)] transition duration-200 hover:bg-zinc-200"
+                    >
+                      Quero Automatizar Minhas Vendas
+                      <ArrowRight className="h-5 w-5 transition duration-200 group-hover:translate-x-1" />
+                    </a>
+                    <p className="text-sm uppercase tracking-[0.2em] text-zinc-500">
+                      Estrutura enxuta, resposta rapida, operacao organizada.
+                    </p>
+                  </motion.div>
+
+                  <motion.div
+                    variants={stagger}
+                    className="mt-14 grid gap-5 lg:grid-cols-3"
+                  >
+                    {highlightCards.map((card) => (
+                      <HeroCard key={card.value} {...card} />
+                    ))}
+                  </motion.div>
                 </motion.div>
-              </motion.div>
+              </div>
             </section>
 
             <motion.section
@@ -384,120 +388,110 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
               whileInView="visible"
               viewport={{ once: true, amount: 0.2 }}
               variants={stagger}
-              className="mx-auto max-w-6xl py-8"
+              className="py-20"
             >
-              <div className="mb-6 flex items-center justify-between gap-4">
-                <div>
-                  <p className="text-sm font-semibold uppercase tracking-[0.25em] text-zinc-400">Yin</p>
-                  <h2 className="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl">
-                    A regra do jogo mudou: quem demora, não vende.
+              <div className="mb-10 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+                <div className="max-w-3xl">
+                  <p className="text-sm font-semibold uppercase tracking-[0.3em] text-zinc-500">
+                    Estrutura
+                  </p>
+                  <h2 className="mt-3 text-3xl font-black tracking-tight text-white sm:text-4xl">
+                    A LP ficou mais direta, mais densa e visualmente mais forte.
                   </h2>
+                </div>
+                <div className="max-w-xl rounded-[24px] border border-white/10 bg-white/[0.02] p-5 text-sm leading-7 text-zinc-400">
+                  O visual agora trabalha com contraste seco, grid fino e blocos mais
+                  arquitetonicos para passar sensacao de sistema, velocidade e controle.
                 </div>
               </div>
 
-              <div className="grid gap-6 md:grid-cols-3">
-                {problems.map((item, index) => (
-                  <SectionCard
-                    key={item.title}
-                    icon={item.icon}
-                    title={item.title}
-                    description={item.description}
-                    index={index}
-                  />
+              <div className="grid gap-5 lg:grid-cols-3">
+                {workflowItems.map((item, index) => (
+                  <WorkflowCard key={item.title} index={index} {...item} />
                 ))}
               </div>
-            </motion.section>
-
-            <motion.section
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
-              variants={stagger}
-              className="mx-auto max-w-6xl py-24"
-            >
-              <div className="mb-12 max-w-3xl">
-                <p className="text-sm font-semibold uppercase tracking-[0.25em] text-zinc-400">Yang</p>
-                <h2 className="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">
-                  A infraestrutura que trabalha na velocidade da luz.
-                </h2>
-              </div>
-
-              <div className="grid gap-6 lg:grid-cols-3">
-                {solutions.map((item, index) => (
-                  <SectionCard
-                    key={item.title}
-                    icon={item.icon}
-                    title={item.title}
-                    description={item.description}
-                    index={index}
-                  />
-                ))}
-              </div>
-
-              <motion.div
-                variants={fadeUp}
-                custom={0.25}
-                className="mt-10 grid gap-4 rounded-[28px] border border-white/10 bg-white/[0.03] p-5 shadow-[0_20px_50px_rgba(0,0,0,0.28)] backdrop-blur-xl md:grid-cols-3"
-              >
-                {highlights.map((item) => (
-                  <div
-                    key={item}
-                    className="flex items-start gap-3 rounded-2xl border border-white/8 bg-black/10 p-4"
-                  >
-                    <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-white" />
-                    <p className="text-sm leading-7 text-zinc-300">{item}</p>
-                  </div>
-                ))}
-              </motion.div>
             </motion.section>
 
             <motion.section
               id="formulario"
-              initial={{ opacity: 0, y: 32 }}
+              initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="mx-auto max-w-5xl py-10 pb-24"
+              transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+              className="pb-24"
             >
-              <div className="relative overflow-hidden rounded-[34px] border border-white/10 bg-gradient-to-br from-white/[0.08] via-white/[0.05] to-white/[0.025] p-1 shadow-[0_24px_90px_rgba(0,0,0,0.5)]">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.12),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.08),transparent_32%)]" />
-                <div className="relative rounded-[30px] border border-white/8 bg-[#0A0A0A]/95 p-8 backdrop-blur-xl sm:p-10 lg:p-12">
-                  <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-                    <div>
-                      <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-zinc-200 shadow-[0_10px_30px_rgba(255,255,255,0.04)]">
-                        <ShieldCheck className="h-4 w-4" />
-                        O teste de velocidade
-                      </div>
-                      <h2 className="mt-5 text-3xl font-bold tracking-tight text-white sm:text-4xl">
-                        Sinta o impacto no seu próprio celular.
-                      </h2>
-                      <p className="mt-4 max-w-xl text-base leading-8 text-zinc-300">
-                        Não acredite apenas em palavras. Preencha o formulário abaixo e veja como a tecnologia YANG vai abordar seus futuros clientes em tempo real.
-                      </p>
+              <div className="overflow-hidden rounded-[36px] border border-white/10 bg-[linear-gradient(180deg,rgba(9,9,9,0.96),rgba(4,4,4,0.98))] shadow-[0_28px_90px_rgba(0,0,0,0.55)]">
+                <div className="grid gap-0 lg:grid-cols-[1.02fr_0.98fr]">
+                  <div className="border-b border-white/8 px-6 py-8 sm:px-8 lg:border-b-0 lg:border-r">
+                    <div className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/[0.03] px-4 py-2 text-xs uppercase tracking-[0.22em] text-zinc-300">
+                      <ShieldCheck className="h-4 w-4" />
+                      Diagnostico de automacao
+                    </div>
 
-                      <div className="mt-8 grid gap-4 sm:grid-cols-2">
-                        <MetricCard value="5s" label="para iniciar uma negociação automática" />
-                        <MetricCard value="CRM" label="com todo o fluxo comercial espelhado" />
+                    <h2 className="mt-6 max-w-xl text-3xl font-black tracking-tight text-white sm:text-4xl">
+                      Veja como essa estrutura pode operar na sua empresa.
+                    </h2>
+                    <p className="mt-4 max-w-xl text-base leading-8 text-zinc-300">
+                      Preencha o formulario e receba uma avaliacao para transformar clique em
+                      conversa, conversa em pipeline e pipeline em faturamento.
+                    </p>
+
+                    <div className="mt-10 grid gap-4 sm:grid-cols-2">
+                      <div className="rounded-[24px] border border-white/10 bg-white/[0.03] p-5">
+                        <div className="flex items-center gap-3">
+                          <div className="flex h-10 w-10 items-center justify-center rounded-full border border-white/12 bg-black">
+                            <Zap className="h-4 w-4 text-white" />
+                          </div>
+                          <div>
+                            <p className="text-2xl font-black text-white">5s</p>
+                            <p className="text-sm text-zinc-400">para iniciar o contato</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="rounded-[24px] border border-white/10 bg-white/[0.03] p-5">
+                        <div className="flex items-center gap-3">
+                          <div className="flex h-10 w-10 items-center justify-center rounded-full border border-white/12 bg-black">
+                            <LayoutDashboard className="h-4 w-4 text-white" />
+                          </div>
+                          <div>
+                            <p className="text-2xl font-black text-white">CRM</p>
+                            <p className="text-sm text-zinc-400">sincronizado com o fluxo</p>
+                          </div>
+                        </div>
                       </div>
                     </div>
 
+                    <div className="mt-10 space-y-4">
+                      {proofPoints.map((point) => (
+                        <div
+                          key={point}
+                          className="flex items-start gap-3 rounded-[20px] border border-white/8 bg-white/[0.02] px-4 py-4"
+                        >
+                          <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-white" />
+                          <p className="text-sm leading-7 text-zinc-400">{point}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="px-6 py-8 sm:px-8">
                     <motion.form
                       onSubmit={handleSubmit}
                       whileHover={{
-                        boxShadow:
-                          "0 22px 55px rgba(0,0,0,0.38), inset 0 1px 0 rgba(255,255,255,0.03)",
-                        borderColor: "rgba(255,255,255,0.16)",
+                        borderColor: "rgba(255,255,255,0.2)",
+                        boxShadow: "0 26px 60px rgba(0,0,0,0.42)",
                       }}
-                      className="rounded-[28px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.055),rgba(255,255,255,0.025))] p-6 shadow-[0_18px_50px_rgba(0,0,0,0.35)] backdrop-blur-xl sm:p-7"
+                      className="rounded-[28px] border border-white/10 bg-white/[0.03] p-6 shadow-[0_18px_45px_rgba(0,0,0,0.35)] sm:p-7"
                     >
-                      <div className="mb-5">
-                        <div className="flex items-center justify-between text-xs text-zinc-400">
+                      <div className="mb-6">
+                        <div className="flex items-center justify-between text-xs uppercase tracking-[0.18em] text-zinc-500">
                           <span>Preenchimento</span>
                           <span>{Math.round(completionHint)}%</span>
                         </div>
-                        <div className="mt-2 h-2 overflow-hidden rounded-full bg-white/5">
+                        <div className="mt-3 h-2 overflow-hidden rounded-full bg-white/6">
                           <motion.div
-                            className="h-full rounded-full bg-gradient-to-r from-white via-zinc-300 to-white"
+                            className="h-full rounded-full bg-white"
                             animate={{ width: `${completionHint}%` }}
                             transition={{ duration: 0.35 }}
                           />
@@ -529,7 +523,7 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
 
                         <InputField
                           id="email"
-                          label="E-mail"
+                          label="Email"
                           type="email"
                           name="email"
                           value={formData.email}
@@ -541,9 +535,11 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
                         <button
                           type="submit"
                           disabled={submitState === "loading"}
-                          className="group inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-white px-6 py-4 text-base font-semibold uppercase tracking-[0.06em] text-black shadow-[0_0_40px_rgba(255,255,255,0.12)] transition duration-200 hover:bg-zinc-200 hover:shadow-[0_0_54px_rgba(255,255,255,0.16)] disabled:cursor-not-allowed disabled:opacity-70"
+                          className="group inline-flex w-full items-center justify-center gap-3 rounded-[20px] border border-white bg-white px-6 py-4 text-base font-bold uppercase tracking-[0.08em] text-black transition duration-200 hover:bg-zinc-200 disabled:cursor-not-allowed disabled:opacity-70"
                         >
-                          {submitState === "loading" ? "Enviando teste..." : "TESTAR VELOCIDADE DE RESPOSTA ⚡"}
+                          {submitState === "loading"
+                            ? "Enviando diagnostico..."
+                            : "Quero Automatizar Minhas Vendas"}
                           <ArrowRight className="h-5 w-5 transition duration-200 group-hover:translate-x-1" />
                         </button>
 
@@ -570,25 +566,17 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
 }
 
 export function LandingPageAutomacaoB2BTests() {
-  const hasThreeProblemCards = problems.length === 3;
-  const hasThreeSolutionCards = solutions.length === 3;
-  const copyPreserved =
-    problems[0].title === "A janela de ouro fechou" &&
-    solutions[1].title === "Disparo em 5 segundos";
-  const cardHoverUsesNoLift =
-    !/whileHover=\{\{ y: -8 \}\}/.test(String(SectionCard)) &&
-    !/hover:-translate-y/.test(String(SectionCard));
-  const metricCopyPreserved =
-    ["5s", "CRM"].every((value) => /5s|CRM/.test(value)) &&
-    ["para iniciar uma negociação automática", "com todo o fluxo comercial espelhado"].length === 2;
+  const hasThreeHighlightCards = highlightCards.length === 3;
+  const heroCopyPreserved =
+    highlightCards[0].value === "5s" &&
+    proofPoints[0] === "Landing pages pensadas para acao rapida, nao para distraicao.";
+  const workflowCountPreserved = workflowItems.length === 3;
 
   return (
     <div className="hidden" aria-hidden="true">
-      <HiddenTestValue label="problems-count">{String(hasThreeProblemCards)}</HiddenTestValue>
-      <HiddenTestValue label="solutions-count">{String(hasThreeSolutionCards)}</HiddenTestValue>
-      <HiddenTestValue label="copy-preserved">{String(copyPreserved)}</HiddenTestValue>
-      <HiddenTestValue label="no-lift-hover">{String(cardHoverUsesNoLift)}</HiddenTestValue>
-      <HiddenTestValue label="metric-copy-preserved">{String(metricCopyPreserved)}</HiddenTestValue>
+      <HiddenTestValue label="highlight-cards-count">{String(hasThreeHighlightCards)}</HiddenTestValue>
+      <HiddenTestValue label="hero-copy-preserved">{String(heroCopyPreserved)}</HiddenTestValue>
+      <HiddenTestValue label="workflow-count">{String(workflowCountPreserved)}</HiddenTestValue>
     </div>
   );
 }
