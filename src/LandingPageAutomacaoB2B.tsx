@@ -4,7 +4,6 @@ import type { ChangeEvent, FormEvent, ReactNode } from "react";
 import {
   ArrowRight,
   CheckCircle2,
-  Cog,
   Funnel,
   LayoutDashboard,
   MessageCircleMore,
@@ -54,7 +53,7 @@ const highlightCards: HighlightCard[] = [
     value: "5s",
     label: "Primeiro contato automatizado",
     description: "Seu lead recebe retorno enquanto ainda está quente.",
-    icon: Cog,
+    icon: Zap,
   },
   {
     value: "WhatsApp",
@@ -139,12 +138,13 @@ function GridBackground() {
 
 function BrandMark() {
   return (
-    <div className="relative flex h-14 w-14 items-center justify-center rounded-full border border-white/20 bg-white/[0.04] shadow-[0_0_0_1px_rgba(255,255,255,0.05),0_12px_30px_rgba(0,0,0,0.45)]">
-      <div className="absolute h-[72%] w-[72%] rounded-full border border-white/10" />
-      <div className="absolute right-2 top-2 h-1.5 w-1.5 rounded-full bg-white" />
-      <div className="absolute right-3 top-[16px] h-5 w-px bg-white/40" />
-      <div className="absolute left-[10px] top-1/2 h-px w-3 bg-white/30" />
-      <Cog className="h-6 w-6 text-white" strokeWidth={1.8} />
+    <div className="relative flex h-16 w-16 items-center justify-center rounded-full border border-white/18 bg-white/[0.03] p-2.5 shadow-[0_0_0_1px_rgba(255,255,255,0.05),0_14px_34px_rgba(0,0,0,0.48)]">
+      <div className="absolute inset-[6px] rounded-full border border-white/10" />
+      <img
+        src="/logo-yang.png"
+        alt="Logo da YANG.AI"
+        className="relative z-10 h-full w-full object-contain drop-shadow-[0_4px_12px_rgba(255,255,255,0.08)]"
+      />
     </div>
   );
 }
