@@ -53,44 +53,44 @@ const highlightCards: HighlightCard[] = [
   {
     value: "5s",
     label: "Primeiro contato automatizado",
-    description: "Seu lead recebe retorno enquanto ainda esta quente.",
+    description: "Seu lead recebe retorno enquanto ainda está quente.",
     icon: Cog,
   },
   {
     value: "WhatsApp",
-    label: "Distribuicao e resposta em tempo real",
-    description: "Cada entrada ja cai no fluxo certo com contexto.",
+    label: "Distribuição e resposta em tempo real",
+    description: "Cada entrada já cai no fluxo certo com contexto.",
     icon: MessageCircleMore,
   },
   {
     value: "CRM",
     label: "Funil visual sincronizado",
-    description: "Time comercial entra para vender, nao para organizar.",
+    description: "O time comercial entra para vender, não para organizar.",
     icon: Funnel,
   },
 ];
 
 const workflowItems: WorkflowItem[] = [
   {
-    title: "Captura em pagina orientada a conversao",
+    title: "Captura em página orientada à conversão",
     description:
-      "A estrutura da LP empurra a decisao com mensagem curta, contraste alto e CTA dominante.",
+      "A estrutura da LP empurra a decisão com mensagem curta, contraste alto e CTA dominante.",
   },
   {
     title: "Resposta imediata no WhatsApp",
     description:
-      "Assim que o lead entra, a automacao dispara contato, qualifica e registra o contexto sem atraso humano.",
+      "Assim que o lead entra, a automação dispara contato, qualifica e registra o contexto sem atraso humano.",
   },
   {
-    title: "Pipeline limpo e operacao visivel",
+    title: "Pipeline limpo e operação visível",
     description:
-      "Cada lead aparece no CRM com historico claro para a equipe atuar apenas onde existe chance real de fechamento.",
+      "Cada lead aparece no CRM com histórico claro para a equipe atuar apenas onde existe chance real de fechamento.",
   },
 ];
 
 const proofPoints = [
-  "Landing pages pensadas para acao rapida, nao para distraicao.",
-  "Automacao com resposta instantanea em ate 5 segundos.",
+  "Landing pages pensadas para ação rápida, não para distração.",
+  "Automação com resposta instantânea em até 5 segundos.",
   "CRM visual sincronizado com a conversa do lead.",
 ];
 
@@ -251,7 +251,7 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
         await onSubmit(formData);
       } else {
         if (!webhookUrl) {
-          throw new Error("Webhook do n8n nao configurado.");
+          throw new Error("Webhook do n8n não configurado.");
         }
 
         const response = await fetch(webhookUrl, {
@@ -267,17 +267,17 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
         });
 
         if (!response.ok) {
-          throw new Error("Nao foi possivel enviar seus dados agora.");
+          throw new Error("Não foi possível enviar seus dados agora.");
         }
       }
 
       setSubmitState("success");
-      setSubmitMessage("Pedido recebido. Agora e so acompanhar seu WhatsApp.");
+      setSubmitMessage("Pedido recebido. Agora é só acompanhar seu WhatsApp.");
       setFormData({ nome: "", whatsapp: "", email: "" });
     } catch (error) {
       setSubmitState("error");
       setSubmitMessage(
-        error instanceof Error ? error.message : "Ocorreu um erro ao enviar o formulario.",
+        error instanceof Error ? error.message : "Ocorreu um erro ao enviar o formulário.",
       );
     }
   };
@@ -302,11 +302,11 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
             <div className="flex items-center gap-4">
               <BrandMark />
               <div>
-                <p className="text-lg font-semibold tracking-tight text-white sm:text-xl">
+                <p className="text-xl font-black tracking-[0.04em] text-white [text-shadow:0_2px_18px_rgba(255,255,255,0.18)] sm:text-[1.9rem]">
                   YANG.AI
                 </p>
                 <p className="mt-1 text-sm text-zinc-400">
-                  Infraestrutura comercial de alta conversao
+                  Infraestrutura comercial de alta conversão
                 </p>
               </div>
             </div>
@@ -334,7 +334,7 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
                   className="relative z-10"
                 >
                   <motion.div variants={fadeUp} custom={0.05} className="flex justify-center">
-                    <SignalPill>Infraestrutura de vendas em modo automatico</SignalPill>
+                    <SignalPill>Infraestrutura de vendas em modo automático</SignalPill>
                   </motion.div>
 
                   <motion.h1
@@ -342,7 +342,7 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
                     custom={0.12}
                     className="mx-auto mt-8 max-w-5xl text-center text-5xl font-black leading-[0.92] tracking-[-0.04em] text-white sm:text-6xl lg:text-[5.4rem]"
                   >
-                    Voce esta pagando para o seu concorrente vender.
+                    Você está pagando para o seu concorrente vender.
                   </motion.h1>
 
                   <motion.p
@@ -350,7 +350,7 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
                     custom={0.2}
                     className="mx-auto mt-6 max-w-3xl text-center text-base leading-8 text-zinc-300 sm:text-xl"
                   >
-                    Implementamos infraestruturas de automacao que respondem seus leads em 5
+                    Implementamos infraestruturas de automação que respondem seus leads em 5
                     segundos no WhatsApp e organizam todo o seu funil comercial.
                   </motion.p>
 
@@ -367,7 +367,7 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
                       <ArrowRight className="h-5 w-5 transition duration-200 group-hover:translate-x-1" />
                     </a>
                     <p className="text-sm uppercase tracking-[0.2em] text-zinc-500">
-                      Estrutura enxuta, resposta rapida, operacao organizada.
+                      Estrutura enxuta, resposta rápida, operação organizada.
                     </p>
                   </motion.div>
 
@@ -401,7 +401,7 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
                 </div>
                 <div className="max-w-xl rounded-[24px] border border-white/10 bg-white/[0.02] p-5 text-sm leading-7 text-zinc-400">
                   O visual agora trabalha com contraste seco, grid fino e blocos mais
-                  arquitetonicos para passar sensacao de sistema, velocidade e controle.
+                  arquitetônicos para passar sensação de sistema, velocidade e controle.
                 </div>
               </div>
 
@@ -425,14 +425,14 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
                   <div className="border-b border-white/8 px-6 py-8 sm:px-8 lg:border-b-0 lg:border-r">
                     <div className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/[0.03] px-4 py-2 text-xs uppercase tracking-[0.22em] text-zinc-300">
                       <ShieldCheck className="h-4 w-4" />
-                      Diagnostico de automacao
+                      Diagnóstico de automação
                     </div>
 
                     <h2 className="mt-6 max-w-xl text-3xl font-black tracking-tight text-white sm:text-4xl">
                       Veja como essa estrutura pode operar na sua empresa.
                     </h2>
                     <p className="mt-4 max-w-xl text-base leading-8 text-zinc-300">
-                      Preencha o formulario e receba uma avaliacao para transformar clique em
+                      Preencha o formulário e receba uma avaliação para transformar clique em
                       conversa, conversa em pipeline e pipeline em faturamento.
                     </p>
 
@@ -523,7 +523,7 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
 
                         <InputField
                           id="email"
-                          label="Email"
+                          label="E-mail"
                           type="email"
                           name="email"
                           value={formData.email}
@@ -538,7 +538,7 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
                           className="group inline-flex w-full items-center justify-center gap-3 rounded-[20px] border border-white bg-white px-6 py-4 text-base font-bold uppercase tracking-[0.08em] text-black transition duration-200 hover:bg-zinc-200 disabled:cursor-not-allowed disabled:opacity-70"
                         >
                           {submitState === "loading"
-                            ? "Enviando diagnostico..."
+                            ? "Enviando diagnóstico..."
                             : "Quero Automatizar Minhas Vendas"}
                           <ArrowRight className="h-5 w-5 transition duration-200 group-hover:translate-x-1" />
                         </button>
@@ -569,7 +569,7 @@ export function LandingPageAutomacaoB2BTests() {
   const hasThreeHighlightCards = highlightCards.length === 3;
   const heroCopyPreserved =
     highlightCards[0].value === "5s" &&
-    proofPoints[0] === "Landing pages pensadas para acao rapida, nao para distraicao.";
+    proofPoints[0] === "Landing pages pensadas para ação rápida, não para distração.";
   const workflowCountPreserved = workflowItems.length === 3;
 
   return (
