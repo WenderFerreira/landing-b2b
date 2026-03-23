@@ -303,7 +303,7 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
               <BrandMark />
               <div>
                 <p className="text-lg font-semibold tracking-tight text-white sm:text-xl">
-                  Automacao B2B
+                  YANG.AI
                 </p>
                 <p className="mt-1 text-sm text-zinc-400">
                   Infraestrutura comercial de alta conversao
