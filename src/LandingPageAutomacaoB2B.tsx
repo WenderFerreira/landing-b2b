@@ -93,6 +93,12 @@ const proofPoints = [
   "CRM visual sincronizado com a conversa do lead.",
 ];
 
+const integrationHighlight = {
+  title: "Integração Universal: O seu CRM atual com esteroides.",
+  description:
+    "Não importa se você usa Kommo, Pipedrive, HubSpot, RD Station ou Salesforce. A infraestrutura da YANG é agnóstica. Nós plugamos o nosso motor de automação e inteligência diretamente no ecossistema que a sua equipe já utiliza. Zero atrito, zero necessidade de migração. O lead entra, a venda acontece onde você já trabalha.",
+};
+
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
   visible: (delay = 0) => ({
@@ -410,6 +416,29 @@ export default function LandingPageAutomacaoB2B({ onSubmit }: LandingPageProps) 
                   <WorkflowCard key={item.title} index={index} {...item} />
                 ))}
               </div>
+
+              <motion.div
+                variants={fadeUp}
+                custom={0.18}
+                className="mt-8 overflow-hidden rounded-[30px] border border-white/10 bg-[linear-gradient(135deg,rgba(255,255,255,0.05),rgba(255,255,255,0.015))] shadow-[0_22px_50px_rgba(0,0,0,0.32)]"
+              >
+                <div className="grid gap-0 lg:grid-cols-[0.78fr_1.22fr]">
+                  <div className="border-b border-white/8 bg-white/[0.03] px-6 py-6 lg:border-b-0 lg:border-r lg:px-8 lg:py-8">
+                    <p className="text-xs font-semibold uppercase tracking-[0.28em] text-zinc-500">
+                      Compatibilidade
+                    </p>
+                    <h3 className="mt-4 max-w-sm text-2xl font-black leading-tight tracking-tight text-white sm:text-[2rem]">
+                      {integrationHighlight.title}
+                    </h3>
+                  </div>
+
+                  <div className="px-6 py-6 lg:px-8 lg:py-8">
+                    <p className="max-w-3xl text-sm leading-8 text-zinc-300 sm:text-[1.02rem]">
+                      {integrationHighlight.description}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
             </motion.section>
 
             <motion.section
