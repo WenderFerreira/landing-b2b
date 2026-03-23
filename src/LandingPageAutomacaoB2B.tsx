@@ -138,12 +138,11 @@ function GridBackground() {
 
 function BrandMark() {
   return (
-    <div className="relative flex h-16 w-16 items-center justify-center rounded-full border border-white/18 bg-white/[0.03] p-2.5 shadow-[0_0_0_1px_rgba(255,255,255,0.05),0_14px_34px_rgba(0,0,0,0.48)]">
-      <div className="absolute inset-[6px] rounded-full border border-white/10" />
+    <div className="relative flex h-20 w-20 items-center justify-center">
       <img
         src="/logo-yang.png"
         alt="Logo da YANG.AI"
-        className="relative z-10 h-full w-full object-contain drop-shadow-[0_4px_12px_rgba(255,255,255,0.08)]"
+        className="relative z-10 h-full w-full object-contain drop-shadow-[0_10px_22px_rgba(255,255,255,0.08)]"
       />
     </div>
   );
